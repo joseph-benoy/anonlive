@@ -1,4 +1,4 @@
-import { addNewCategory } from "../services/category.js"
+import { addNewCategory, getAllCategories } from "../services/category.js"
 
 export const addCategory = async(req,res)=>{
     try{
@@ -14,5 +14,16 @@ export const addCategory = async(req,res)=>{
     }
     catch(e){
         return e;
+    }
+}
+export const getCategories = async(req,res)=>{
+    try{
+        const result = await getAllCategories();
+        return res.json(result);
+    }
+    catch(e){
+        return res.status(500).json({
+            error:"couldn't get catgories"
+        })
     }
 }
