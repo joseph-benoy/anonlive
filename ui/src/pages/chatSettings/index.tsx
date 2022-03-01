@@ -5,14 +5,11 @@ import { Container, Form,Button } from "react-bootstrap";
 import {  SelectOption } from "../../interfaces";
 import Select from 'react-select';
 import { useForm,Controller } from "react-hook-form";
+import useCategory from "../../hooks/useCategory";
 
 
 const ChatSettings:React.FC = ():JSX.Element=>{
-    const options:Array<SelectOption> = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-      ];
+    const category = useCategory();
       const typeOptions:Array<SelectOption> = [
         { value: 'private', label: 'Private' },
         { value: 'protected', label: 'Protected' },
@@ -59,21 +56,13 @@ const ChatSettings:React.FC = ():JSX.Element=>{
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Category</Form.Label>
-                        <Controller
-                            rules={{ required: true }}
-                                control={control}
-                                defaultValue={""}
-                                            name="category"
-                                            render={({ field: { onChange, value, ref }}) => (
-                                            <Select 
-                                                ref={ref}
-                                                value={options.filter(c => value.includes(c.value))}
-                                                onChange={(val:any) => onChange(val.value)}
-                                                options={options}
-                                            />
-                                            )}
-
-                        />                  
+                                <Form.Select {...register("category", { required: true })}>
+                                <option selected disabled>choose</option>{
+                                    category.map((item)=>(
+                                        <option value={item}>{item}</option>
+                                    ))
+                                }
+                                </Form.Select>
                         {errors.category && <span>Chatroom category required</span>}  
                                </Form.Group>
                     <Form.Group className="mb-3">
