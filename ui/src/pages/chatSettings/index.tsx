@@ -6,6 +6,7 @@ import {  SelectOption } from "../../interfaces";
 import Select from 'react-select';
 import { useForm,Controller } from "react-hook-form";
 import useCategory from "../../hooks/useCategory";
+import { postData } from "../../utils/apiHandler";
 
 
 const ChatSettings:React.FC = ():JSX.Element=>{
@@ -16,8 +17,9 @@ const ChatSettings:React.FC = ():JSX.Element=>{
         { value: 'open', label: 'Open' }
       ];
       const { register, handleSubmit,formState: { errors },control } = useForm();
-      const onSubmit = (data:any) => {
-          console.log(data)
+      const onSubmit = async(data:any) => {
+          const result = await postData("/api/chatroom/new",data);
+          alert(result);
         };
     return(
         <>
@@ -56,10 +58,10 @@ const ChatSettings:React.FC = ():JSX.Element=>{
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Category</Form.Label>
-                                <Form.Select {...register("category", { required: true })}>
-                                <option selected disabled>choose</option>{
-                                    category.map((item)=>(
-                                        <option value={item}>{item}</option>
+                                <Form.Select defaultValue="choose" {...register("category", { required: true })}>
+                                <option  disabled>choose</option>{
+                                    category.map((item,key)=>(
+                                        <option key={key} value={item}>{item}</option>
                                     ))
                                 }
                                 </Form.Select>
