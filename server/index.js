@@ -24,8 +24,10 @@ const chatRoom = io.of("/chatroom");
 chatRoom.on("connection",chatRoomHandler);
 
 app.use((err,req,res,next)=>{
-    res.status(500).json(err);
+    res.status(error.status).json(err);
 })
+
+
 
 
 httpServer.listen(process.env.HTTP_PORT,()=>{
