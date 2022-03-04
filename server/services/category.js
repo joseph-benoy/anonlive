@@ -21,7 +21,6 @@ export const addNewCategory = async(categoryName)=>{
 export const getAllCategories = async()=>{
     try{
         const result = await redis.lrange("AlCategories",0,-1);
-        console.log(result);
         return result;
     }
     catch(e){

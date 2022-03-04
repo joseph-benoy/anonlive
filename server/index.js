@@ -5,6 +5,7 @@ import {Server} from "socket.io";
 import router from './routes/APIv1/index.js';
 import chatRoomHandler from './services/chatRoom.js';
 import cookieParser from "cookie-parser";
+import cors from "cors";
 const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
@@ -12,6 +13,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
+app.use(cors());
 app.get("/",(req,res)=>{
     res.send("<h1>AnonLive</h1>");
 })

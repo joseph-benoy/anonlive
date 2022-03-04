@@ -1,13 +1,12 @@
 import "./chatSettings.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../../components/header";
 import { Container, Form,Button } from "react-bootstrap";
 import {  SelectOption } from "../../interfaces";
 import Select from 'react-select';
 import { useForm,Controller } from "react-hook-form";
 import useCategory from "../../hooks/useCategory";
-import { postData } from "../../utils/apiHandler";
-
+import axios from "axios";
 
 const ChatSettings:React.FC = ():JSX.Element=>{
     const category = useCategory();
@@ -18,8 +17,21 @@ const ChatSettings:React.FC = ():JSX.Element=>{
       ];
       const { register, handleSubmit,formState: { errors },control } = useForm();
       const onSubmit = async(data:any) => {
-          const result = await postData("/api/chatroom/new",data);
-          alert(result);
+            try{
+                const dataNew = new FormData();
+                dataNew.append("name",data.name);
+                dataNew.append("type",data.type);
+                dataNew.append("category",data.category);
+                dataNew.append("description",data.description);
+                dataNew.append("owner",data.owner);
+                dataNew.append("dp",data.dp[0]);
+                dataNew.append("icon",data.icon[0]);
+                
+                await axios.post("/api/chatroom/new",dataNew);
+            }
+            catch(e){
+                alert("Falied to create new chat room")
+            }
         };
     return(
         <>
@@ -89,3 +101,4 @@ const ChatSettings:React.FC = ():JSX.Element=>{
 }
 
 export default ChatSettings;
+/*                    */
