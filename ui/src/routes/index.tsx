@@ -1,3 +1,4 @@
+import Chat from "../pages/chat/Chat";
 import ChatSettings from "../pages/chatSettings";
 import Home from "../pages/home";
 const routes = [
@@ -6,9 +7,17 @@ const routes = [
         element:<Home/>
     },
     {
-        path:"chat",
-        element:<ChatSettings/>
+        path:"home",
+        element:<Home/>
     },
+    {
+        path:"chat",
+        element:<Chat/>,
+    },
+    {
+        path:"chat/new",
+        element:<ChatSettings/>,
+    }
 ];
 
 export default routes;
