@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const postData = async(url:string,data:any)=>{
     try{
-        const res = await axios.post("/api/chatroom/new",data);
+        const res = await axios.post(url,data);
         return true;
     }
     catch(e){

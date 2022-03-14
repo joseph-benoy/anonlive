@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { SelectOption } from "../interfaces";
 
 const useCategory = ()=>{
     const [data,setData] = useState([]);
