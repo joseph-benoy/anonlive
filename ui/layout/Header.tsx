@@ -13,7 +13,7 @@ export  function Header (props: IHeaderProps) {
                 <h2 className='font-bold text-red-500 text-3xl -mt-5'>Anon Live</h2>
             </div>
             <div>
-                <PrimaryBtn>Enter chat</PrimaryBtn>
+                <PrimaryBtn>Create chat</PrimaryBtn>
             </div>
         </header>
   );
