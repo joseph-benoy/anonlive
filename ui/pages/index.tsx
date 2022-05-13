@@ -13,11 +13,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <div className='px-20'>
-          <h1>Instant Live chatrooms</h1>
-          <h2>ive chat rooms for online conversations, free online chatting, video chat and chat rooms.</h2>
-            <PrimaryBtn>Enter chat</PrimaryBtn>
-      </div>
+        <div className='grid grid-cols-12 px-20'>
+            <div className='col-span-6 -mt-5 gap-5  pr-20 flex flex-col justify-center'>
+                <h1 className='text-6xl font-bold text-red-500 '>Instant Live chatrooms</h1>
+                <h2 className='text-gray-600 text-xl'>Live chat rooms for online conversations, free online chatting, video chat and chat rooms.</h2>
+                <div>
+                    <PrimaryBtn>Enter chat</PrimaryBtn>
+                </div>
+            </div>
+            <div className='col-span-6'>
+                <Image src='/hero/hero1.jpg' width={500} height={500} alt="hero"/>
+            </div>
+        </div>
     </div>
   )
 }
